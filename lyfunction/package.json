@@ -1,0 +1,23 @@
+{
+    "name": "liteyuki-function",
+    "displayName": "liteyuki-function语法高亮支持",
+    "version": "0.1.0",
+    "publisher": "Nanaloveyuki",
+    "description": "Liteyuki Function",
+    "engines": {
+      "vscode": "^1.0.0"
+    },
+    "contributes": {
+      "languages": [{
+        "id": "lyfunction",
+        "extensions": [".lyf",".lyfunction"],
+        "aliases": ["轻雪函数", "liteyuki Function", "liteyuki-function"],
+        "configuration": "./language-configuration.json"
+      }],
+      "grammars": [{
+        "language": "lyfunction",
+        "scopeName": "source.lyfunction",
+        "path": "./syntaxes/lyfunction.tmLanguage.json"
+      }]
+    }
+}
