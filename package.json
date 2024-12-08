@@ -1,0 +1,25 @@
+{
+  "name": "liteyukifunction",
+  "displayName": "LiteyukiFunction",
+  "description": "Liteyuki Function语法支持",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "lyf",
+      "aliases": ["LiteyukiFunction", "lyf"],
+      "extensions": [".lyf",".liteyukifunction",".lyfunc",".lyfunction"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "lyf",
+      "scopeName": "source.lyf",
+      "path": "./syntaxes/lyf.tmLanguage.json"
+    }]
+  }
+}

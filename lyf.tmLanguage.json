@@ -1,0 +1,114 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "LiteyukiFunction",
+	"fileTypes": ["lyf"],
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#constantNumeric"
+		},
+		{
+			"include": "#variableAssignment" 
+		},
+		{
+			"include": "#apiParams" 
+		},
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#singleQuotedStrings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "meta.function-call.lyf",
+					"begin": "(api|function|nohup|await|cmd|var|end|sleep)\\b",
+					"beginCaptures": {
+						"1": { "name": "keyword.control.lyf" }
+					},
+					"end": "(?=\\W|$)",
+					"patterns": [
+						{
+							"name": "entity.name.function.lyf",
+							"match": "(api|function|nohup|await)\\s*(\\w+)"
+						}
+					]
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.lyf",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.lyf",
+					"match": "\\\\."
+				}
+			]
+		},
+		"singleQuotedStrings": {
+			"name": "string.quoted.single.lyf",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.lyf",
+					"match": "\\\\."
+				}
+			]
+		},
+		"constantNumeric": {
+			"name": "constant.numeric",
+			"match": "\\b\\d+(\\.\\d+)?\\b"
+		},
+		"variableAssignment": {
+			"patterns": [{
+				"name": "meta.variable-assignment.lyf",
+				"begin": "\\b(var|cmd set)\\b",
+				"end": "\\s*",
+				"beginCaptures": {
+					"1": { "name": "keyword.control.lyf" }
+				},
+				"patterns": [{
+					"name": "variable.other.readwrite.lyf",
+					"match": "(?<=\\s)\\w+(?=\\s*=)"
+				}, {
+					"name": "keyword.operator.assignment.lyf",
+					"match": "\\="
+				}, {
+					"include": "#strings"
+				}]
+			}]
+		},
+		"apiParams": { 
+			"patterns": [{
+				"name": "variable.parameter.api.lyf",
+				"match": "\\b(\\w+)(?==)"
+			}]
+		},
+		"functions": {  
+			"patterns": [{
+				"name": "meta.function.lyf",
+				"begin": "\\b(function|api|nohup)\\b",
+				"end": "\\s*",
+				"beginCaptures": {
+					"1": { "name": "keyword.control.lyf" }
+				},
+				"patterns": [{
+					"name": "entity.name.function.lyf",
+					"match": "\\b(\\w+)\\b"
+				}]
+			}]
+		}
+	},
+	"scopeName": "source.lyf"
+}
